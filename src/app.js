@@ -1,6 +1,6 @@
 import express from "express";
 import routes from "./routes/index.js";
-import __dirname from "./dirname.js";
+import __dirname from "../dirname.js";
 import handlebars from "express-handlebars";
 import { Server } from "socket.io";
 import viewsRoutes from "./routes/views.routes.js";
@@ -10,6 +10,10 @@ import envs from "./config/envs.config.js";
 import passport from "passport";
 import { initializePassport } from "./config/passport.config.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+
+
+
 
 const app = express();
 
@@ -29,6 +33,7 @@ app.use(
     saveUninitialized: true, // Guarda la session
   })
 );
+app.use(cors());
 
 initializePassport();
 app.use(passport.initialize());
@@ -38,7 +43,7 @@ app.use(passport.session());
 app.use("/api", routes);
 
 // Ruta de las vistas
-app.use("/", viewsRoutes);
+app.use("/", viewsRoutes)
 
 const httpServer = app.listen(envs.PORT, () => {
   console.log(`Server on port ${envs.PORT}`);
