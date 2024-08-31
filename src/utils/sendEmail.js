@@ -20,9 +20,9 @@ export const sendEmail = async (email, subject, message, html) => {
         html: html,
         attachments: [
             {
-                filename: "gatito.jpg",
-                path: __dirname + "/public/images/gatito.jpg",
-                cid: "gatito",
+                filename: "pollito.jpg",
+                path: __dirname + "/public/images/pollito.jpg",
+                cid: "pollito",
             },
         ],
     });
